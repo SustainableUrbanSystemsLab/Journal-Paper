@@ -1,5 +1,8 @@
+# Set input path so sub_1 files are found
+$ENV{'TEXINPUTS'} = './sub_1//:' . ($ENV{'TEXINPUTS'} || '');
+
 # Specify the main files
-@default_files = ('paper.tex','paper_blind.tex','sub_graphical_abstract.tex','sub_highlights.tex','sub_paper.tex','sub_paper_blind.tex');
+@default_files = ('sub_1/paper.tex','sub_1/paper_blind.tex','sub_1/sub_graphical_abstract.tex','sub_1/sub_highlights.tex','sub_1/sub_paper.tex','sub_1/sub_paper_blind.tex');
 
 $pdflatex = 'pdflatex -aux-directory=tmp %O -interaction=nonstopmode -shell-escape %S';
 
