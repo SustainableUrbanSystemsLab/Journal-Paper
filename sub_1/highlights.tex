@@ -11,14 +11,17 @@
 }
 
 \begin{document}
-\shorttitle{\PaperShortTitle}
-\shortauthors{\PaperShortAuthors}
-\title{\PaperTitle}
-\RenderCasAuthors
+\pagestyle{empty}
+\thispagestyle{empty}
 
-\begin{highlights}
+\begin{center}
+{\Large\bfseries Highlights\par}
+\vspace{0.75\baselineskip}
+{\large\PaperTitle\par}
+\end{center}
+\vspace{\baselineskip}
+
+\begin{itemize}
 \input{highlights_content}
-\end{highlights}
-
-\maketitle
+\end{itemize}
 \end{document}
