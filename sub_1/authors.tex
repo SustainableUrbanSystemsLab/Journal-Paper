@@ -4,11 +4,17 @@
 \newcommand{\PaperCorrespondingEmail}{patrick.kastner@gatech.edu}
 \newcommand{\PaperAuthorsPlain}{Patrick Kastner}
 \newcommand{\PaperAffiliationPlain}{Sustainable Urban Systems Lab, Georgia Institute of Technology, 723 Cherry St NW, Atlanta, GA 30332, USA}
+\newcommand{\PaperDisplayEmail}[1]{{\footnotesize\texttt{#1}}}
+\newcommand{\RenderCorrespondingEmailFootnote}{%
+  \begingroup
+  \edef\x{\endgroup\noexpand\ead{\PaperCorrespondingEmail}}%
+  \x
+}
 
 \newcommand{\RenderCasAuthors}{%
   \author[1]{Patrick Kastner}%
   \cormark[1]%
-  \ead{\PaperCorrespondingEmail}%
+  \RenderCorrespondingEmailFootnote%
   \cortext[1]{Corresponding author}%
   \affiliation[1]{organization={Sustainable Urban Systems Lab, Georgia Institute of Technology},
     addressline={723 Cherry St NW},
@@ -23,6 +29,6 @@
   \textbf{Authors}\\
   \PaperAuthorsPlain\\
   \PaperAffiliationPlain\\
-  \texttt{\PaperCorrespondingEmail}
+  \PaperDisplayEmail{\PaperCorrespondingEmail}
   \end{flushleft}
 }
