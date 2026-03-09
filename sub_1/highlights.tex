@@ -1,8 +1,4 @@
-\documentclass[11pt]{article}
-
-\usepackage[margin=1in]{geometry}
-\usepackage{enumitem}
-\usepackage[hidelinks,unicode]{hyperref}
+\documentclass[a4paper,fleqn]{cas-sc}
 
 \input{metadata}
 \input{authors}
@@ -15,12 +11,14 @@
 }
 
 \begin{document}
-\thispagestyle{empty}
+\shorttitle{\PaperShortTitle}
+\shortauthors{\PaperShortAuthors}
+\title{\PaperTitle}
+\RenderCasAuthors
 
-\noindent\textbf{Highlights for \PaperTitle}
-
-\begin{itemize}[leftmargin=1.5em]
+\begin{highlights}
 \input{highlights_content}
-\end{itemize}
+\end{highlights}
 
+\maketitle
 \end{document}

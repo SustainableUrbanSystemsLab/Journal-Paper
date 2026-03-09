@@ -1,10 +1,12 @@
-\documentclass[review,1p,times]{elsarticle}
+\ifdefined\BlindSubmissionMode
+  \documentclass[a4paper,fleqn,review,doubleblind]{cas-sc}
+\else
+  \documentclass[a4paper,fleqn,review]{cas-sc}
+\fi
 
 \input{settings}
 \input{metadata}
 \input{authors}
-
-\journal{\PaperJournal}
 
 \hypersetup{
   pdftitle={\PaperTitle},
@@ -15,26 +17,30 @@
 
 \begin{document}
 
-\begin{frontmatter}
-
+\shorttitle{\PaperShortTitle}
+\shortauthors{\IfBlindTF{Anonymous}{\PaperShortAuthors}}
 \title{\PaperTitle}
-\IfBlindTF{}{%
-  \RenderElsevierAuthors
-}
+\RenderCasAuthors
 
 \begin{abstract}
 \input{abstract}
 \end{abstract}
 
-\begin{keyword}
+\begin{keywords}
 \input{keywords}
-\end{keyword}
+\end{keywords}
 
-\end{frontmatter}
+\maketitle
+\IfBlindTF{%
+  \makeatletter
+  \gdef\@pdfauthor{Anonymous}
+  \makeatother
+  \hypersetup{pdfauthor={Anonymous}}
+}{}
 
 \input{content}
 
-\bibliographystyle{elsarticle-harv}
+\bibliographystyle{cas-model2-names}
 \bibliography{bib}
 
 \end{document}

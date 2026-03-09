@@ -19,6 +19,23 @@ require_command() {
   command -v "$1" >/dev/null 2>&1 || die "Required command not found: $1"
 }
 
+sanitize_pdf_metadata() {
+  local pdf_file="$1"
+  local sanitized_file="${pdf_file%.pdf}.sanitized.pdf"
+
+  if ! command -v gs >/dev/null 2>&1; then
+    printf 'Warning: ghostscript not found; blind PDF metadata was not sanitized.\n' >&2
+    return 0
+  fi
+
+  gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite \
+    -sOutputFile="$sanitized_file" \
+    -c "[ /Title (A reusable Elsevier submission workflow for SustainLab manuscripts) /Author (Anonymous) /Subject () /Keywords () /Creator (SustainLab Elsevier submission workflow) /Producer (SustainLab Elsevier submission workflow) /DOCINFO pdfmark" \
+    -f "$pdf_file"
+
+  mv "$sanitized_file" "$pdf_file"
+}
+
 strip_latex_text() {
   perl -0pe '
     s/%.*$//mg;
@@ -142,6 +159,7 @@ build_full() {
 build_blind() {
   validate_source
   compile_latex "paper_blind.tex" "paper_blind" "paper_blind.pdf"
+  sanitize_pdf_metadata "$PDF_DIR/paper_blind.pdf"
 }
 
 build_titlepage() {
@@ -212,7 +230,8 @@ clean_outputs() {
   find "$SOURCE_DIR" -maxdepth 1 -type f \
     \( -name '*.aux' -o -name '*.bbl' -o -name '*.blg' -o -name '*.fdb_latexmk' \
        -o -name '*.fls' -o -name '*.log' -o -name '*.out' -o -name '*.spl' \
-       -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.ist' \) \
+       -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.ist' \
+       -o -name '*.abs' \) \
     -delete
   rm -f "$SOURCE_DIR/paper.pdf" "$SOURCE_DIR/paper_blind.pdf" "$SOURCE_DIR/highlights.pdf" "$SOURCE_DIR/titlepage.pdf"
 }

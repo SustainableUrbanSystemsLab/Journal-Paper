@@ -22,9 +22,18 @@ Run all commands from the repository root.
 ./submit.sh clean
 ```
 
+Windows wrappers are also available:
+
+```bat
+submit.bat all
+run_compile.bat
+run_export.bat
+run_clean.bat
+```
+
 ## Repo Layout
 
-- `sub_1/paper.tex`: canonical manuscript source
+- `sub_1/paper.tex`: canonical `cas-sc` manuscript source
 - `sub_1/paper_blind.tex`: blind wrapper around the canonical source
 - `sub_1/titlepage.tex`: separate author-details file for double anonymized review
 - `sub_1/highlights.tex`: standalone highlights artifact
@@ -61,4 +70,4 @@ Run all commands from the repository root.
 ## Notes
 
 - The export step keeps all upload files at one directory level to match Elsevier LaTeX upload guidance.
-- The manuscript is tuned to the current `Sustainable Cities and Society` guidance as verified on March 9, 2026.
+- The manuscript is tuned to the current `Sustainable Cities and Society` guidance as verified on March 9, 2026, and now uses Elsevier's `cas-sc` class.
