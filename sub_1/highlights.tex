@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\input{metadata}
+\input{authors}
+
+\hypersetup{
+  pdftitle={Highlights: \PaperTitle},
+  pdfauthor={\PaperPdfAuthors},
+  pdfcreator={SustainLab Elsevier submission workflow},
+  pdfproducer={SustainLab Elsevier submission workflow}
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+\noindent\textbf{Highlights for \PaperTitle}
+
+\begin{itemize}[leftmargin=1.5em]
+\input{highlights_content}
+\end{itemize}
+
+\end{document}

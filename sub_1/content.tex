@@ -1,139 +1,55 @@
-% !TeX encoding = UTF-8
-% !TeX program = pdflatex
-% !TeX spellcheck = en_US
-% !TeX root = paper.tex
-
-
-\input{settings}
-
-\journal{Sustainable Cities and Society}
-
-\newacronym{RMSE}{RMSE}{Root Mean Squared Error}
-
-
-\begin{document}
-
-% \listoftodos
-\clearpage
-
-\begin{frontmatter}
-
-
-
-\title{TITLE}
-
-    \input{authors}
-
-    % Here goes the abstract
-    \begin{abstract}
-        % Basic Introduction
-      
-        % General problem
-
-        % One sentence summarizing the main result (with the words “here we show”)
-
-        % Two or three sentences explaining what the main result reveals in direct comparison to what was previously thought to be the case or how the main result adds to previous knowledge.
-           
-        % One or two sentences to put the results into a more general context
-
-        % Two or three sentences to provide a broader perspective, readily comprehensible to a scientist in any discipline
-
-		% This ensures that Ithaca continues its trajectory towards ambitious climate goals while maintaining an efficient and resilient electric grid.
-    \end{abstract}
-
-    \begin{graphicalabstract}
-        \includegraphics[width=0.9\linewidth]{example-image-a}
-    \end{graphicalabstract}
-
-    % Research highlights
-    \begin{highlights}
-	\item HIGHLIGHT 1% 
-		\item HIGHLIGHT 2% 
-			\item HIGHLIGHT 3% 
-    \end{highlights}
-
-    % Keywords separated by \sep
-    \begin{keyword}
-        KEYWORD 1\sep
-    KEYWORD 2\sep
-       KEYWORD 3\sep
-       KEYWORD 4\sep
-    \end{keyword}
-
-\end{frontmatter}
-
-%\linenumbers
-%\modulolinenumbers[5]
-
 \section{Introduction}
-\label{sec:Introduction}
+\label{sec:introduction}
 
-% First paragraph: The Hook 1. Sentence starting with what the domain is and why it is important 2. What is the overall problem or situation in that domain
-% Second paragraph: The Gap 3. What are the conclusions of existing literature for that problem situation in this domain? 4. What is the problem or issue with that existing literature?
-% Third paragraph: The study 5. Indicate how this study addresses that problem or issue 6. Describe the study, sample, and method for addressing that problem or issue
-% Fourth paragraph: Contribution and conclusion 7. Describe what you found 8. State explicitly how these findings extend and contribute to existing knowledge
-% Fifth paragraph (optional): Outline/roadmap 9. Describe the overall outline of the paper
+Sustainable urban research often combines simulation, empirical analysis, and
+multiple submission artifacts. That makes journal-specific formatting overhead a
+real source of delay during initial submission and revision rounds.
+\citet{sokol2017validation} show how building-energy studies depend on clear
+assumptions, documented archetypes, and reproducible supporting material.
 
+This repository now treats the manuscript as a reusable submission package
+rather than a one-off PDF build. The goal is to keep the scientific text in one
+canonical source while generating the distinct files required by Elsevier's
+double anonymized workflow.
 
-%\clearpage
-%\afterpage{\clearpage}
-\section{Methodology}\label{sec:Methodology}
+\section{Methodology}
+\label{sec:methodology}
 
+The streamlined workflow separates shared manuscript content from
+author-identifying metadata. A single manuscript source defines the title,
+abstract, keywords, main sections, and bibliography, while profile-specific
+wrappers determine whether author details are rendered.
 
+Submission artifacts outside the manuscript itself are kept editable. The title
+page, highlights, and optional graphical abstract each have dedicated source
+files so the export package can be uploaded without manual repackaging.
 
-%\afterpage{\clearpage}
-%\clearpage
 \section{Results}
+\label{sec:results}
 
-%\clearpage\afterpage{\clearpage}
-\section{Discussion}\label{sec:Discussion}
+The build interface now exposes one root command for the full paper, blind
+paper, title page, highlights, export package, and cleanup steps. Validation is
+performed before submission builds so common issues such as placeholder text,
+missing citations, and highlight-length violations are caught early.
 
+\section{Discussion}
+\label{sec:discussion}
 
-%\clearpage
-%\afterpage{\clearpage}
-\glsresetall
+This structure reduces drift between manuscript variants because the body text
+is edited once. It also keeps the repository aligned with Editorial Manager
+upload constraints by flattening the final submission bundle to a single
+directory level.
+
 \section{Conclusion}
-\label{sec:Conclusion}
+\label{sec:conclusion}
 
-% Conclusion
+The repository is now prepared for migration of the real manuscript from
+Overleaf or another LaTeX drafting environment. Replacing the sample text with
+the real paper content should not require any structural changes to the build or
+submission workflow.
 
-
-\section{Acknowledgments}
-
-
-
-
-\newpage
-\begin{table*}[!t]
-    \begin{framed}
-        \vspace{-0.35in}
-        \footnotesize
-        \glsaddall
-        \printglossary[
-            style=mcolindex,
-            nonumberlist,
-            title=Nomenclature,
-            nopostdot,
-            nogroupskip,
-        ]
-    \end{framed}
-\end{table*}
-
-
-\bibliographystyle{elsarticle-harv}
-%\bibliographystyle{elsarticle-num}
-\bibliography{bib.bib}
-
-
-\afterpage{\clearpage}
-\pagebreak
-\appendix
-\section{} % This will be "Appendix A"
-
-
-
-
-
-
-
-\end{document}
+\IfBlindTF{}{%
+\section*{Acknowledgments}
+The authors acknowledge the internal SustainLab review process that informed the
+submission workflow.%
+}

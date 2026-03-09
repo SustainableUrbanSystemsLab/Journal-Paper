@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\input{metadata}
+
+\hypersetup{
+  pdftitle={Graphical abstract: \PaperTitle},
+  pdfauthor={SustainLab submission workflow},
+  pdfcreator={SustainLab Elsevier submission workflow},
+  pdfproducer={SustainLab Elsevier submission workflow}
+}
+
+\newcommand{\RenderGraphicalAbstract}{%
+  \IfFileExists{graphical_abstract.pdf}{%
+    \includegraphics[width=\textwidth]{graphical_abstract.pdf}%
+  }{%
+    \IfFileExists{graphical_abstract.png}{%
+      \includegraphics[width=\textwidth]{graphical_abstract.png}%
+    }{%
+      \IfFileExists{graphical_abstract.jpg}{%
+        \includegraphics[width=\textwidth]{graphical_abstract.jpg}%
+      }{%
+        \IfFileExists{graphical_abstract.jpeg}{%
+          \includegraphics[width=\textwidth]{graphical_abstract.jpeg}%
+        }{%
+          \GenericError{}{No graphical abstract asset found.}{}{}%
+        }%
+      }%
+    }%
+  }%
+}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\RenderGraphicalAbstract
+\end{center}
+\end{document}

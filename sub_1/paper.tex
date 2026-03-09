@@ -1,15 +1,40 @@
-%\documentclass[doubleblind,preprint,review,3p,times,twocolumn]{elsarticle}
-\documentclass[1p,times,preprint,review]{elsarticle}
+\documentclass[review,1p,times]{elsarticle}
 
-%% Use the option review to obtain double line spacing
-%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+\input{settings}
+\input{metadata}
+\input{authors}
 
-%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
-%% for a journal layout:
-%% \documentclass[final,1p,times]{elsarticle}
-%% \documentclass[final,1p,times,twocolumn]{elsarticle}
-%% \documentclass[final,3p,times]{elsarticle}
-%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+\journal{\PaperJournal}
+
+\hypersetup{
+  pdftitle={\PaperTitle},
+  pdfauthor={\SubmissionPdfAuthor},
+  pdfcreator={\SubmissionPdfCreator},
+  pdfproducer={\SubmissionPdfCreator}
+}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{\PaperTitle}
+\IfBlindTF{}{%
+  \RenderElsevierAuthors
+}
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\begin{keyword}
+\input{keywords}
+\end{keyword}
+
+\end{frontmatter}
 
 \input{content}
 
+\bibliographystyle{elsarticle-harv}
+\bibliography{bib}
+
+\end{document}

@@ -1,198 +1,30 @@
-\pdfcompresslevel=0
-\pdfobjcompresslevel=0
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage{gensymb}
-\DeclareUnicodeCharacter{00B0}{\degree}
-
-\usepackage[dvipsnames]{xcolor}
-%\usepackage[authoryear,longnamesfirst]{natbib}
+\usepackage{etoolbox}
+\usepackage{amsmath}
 \usepackage{amssymb}
-%Please add the following packages if necessary:
-\usepackage{booktabs, multirow} % for borders and merged ranges
-\usepackage{soul}% for underlines
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
 
-\usepackage{changepage,threeparttable} % for wide tables
+\providecommand{\SubmissionProfile}{full}
 
-%% The lineno packages adds line numbers. Start line numbering with
-%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
-%% for the whole article with \linenumbers.
-\usepackage{lineno}
-
-\usepackage{framed} % Framing content
-\usepackage{multicol} % Multiple columns environment
-
-\usepackage[textwidth=3cm, colorinlistoftodos]{todonotes}
-\setuptodonotes{fancyline, color=red!15, size=\footnotesize}
-
-\newcommand{\rewrite}[1]{\todo[color=green!40]{#1}}
-\newcommand{\addref}{\todo[color=red!40]{Add reference.}}
-%\newcommand{\todoo}[2][]{\todo[inline,color=red, #1]{#2}}
-\newcommand{\todoo}[2][]{\todo[inline, #1]{#2}}
-
-
-
-\usepackage[breaklinks, hidelinks,hyperfootnotes=false, unicode]{hyperref} %Clickable hyperlinks everywhere
-\def\UrlBigBreaks{\do\/\do-\do:}
-\hypersetup{
-	draft=false,
-	%    bookmarks=true,
-	bookmarksopen=true,
-	bookmarksopenlevel=1,  %hier darf nur ne Zahl stehen, ansonsten produziert TeX nen Fehler in Zusammenhang mit 		bookmarksopen
-	bookmarksdepth=4, %deprecated
-	bookmarksnumbered=true,
-	linktocpage=true,       %break links correctly in listoftables/figures
-	unicode=true,          % non-Latin characters in Acrobat’s bookmarks
-	pdftoolbar=true,        % show Acrobat’s toolbar?
-	pdfmenubar=true,        % show Acrobat’s menu?
-	pdffitwindow=true,     % window fit to page when opened
-	pdfstartview={XYZ null null 1.00},
-	%         XYZ 	left top zoom   Sets a coordinate and a zoom factor. If any one is null, the source link value is used. null null null will give the same values as the current page.   Fit   Fits the page to the window.    FitH 	top
-	%    Fits the width of the page to the window.    FitV 	left     Fits the height of the page to the window.    FitR 	left bottom right top    Fits the rectangle specified by the four coordinates to the window.    FitB  Fits the page bounding box to the window.
-	%    FitBH 	top  Fits the width of the page bounding box to the window.
-	%    FitBV 	left  Fits the height of the page bounding box to the window.
-	pdftitle = {},    % title
-	pdfauthor = {Patrick Kastner},     % author
-%	pdfsubject = {Ph.D. Thesis},   % subject of the document
-	pdfcreator={Patrick Kastner},   % creator of the document
-	pdfproducer={Patrick Kastner}, % producer of the document
-%	pdfkeywords= {Computational Fluid dynamics} {Decision-making} {Generative Adversarial Networks} {Outdoor Thermal Comfort} {Ray Tracing} {Urban Design}, % list of keywords
-	pdfnewwindow=true,      % links in new window
-%	pdfpagelayout={TwoColumnRight},
-	colorlinks=false,       % false: boxed links; true: colored links
-	linkcolor=black,          % color of internal links
-	citecolor=black,        % color of links to bibliography
-	filecolor=black,      % color of file links
-	urlcolor=black,           % color of external links
-	anchorcolor =black,
-%	linkbordercolor={blue!35!black},          % color of internal links
-%	citebordercolor={blue!35!black},        % color of links to bibliography
-%	filebordercolor={blue!35!black},      % color of file links
-%	urlbordercolor={blue!35!black},           % color of external links
-	menucolor =red,
-	runcolor =cyan,
-	pdfencoding=auto,
+\newtoggle{blindsubmission}
+\ifdefstring{\SubmissionProfile}{blind}{%
+  \toggletrue{blindsubmission}%
+}{%
+  \togglefalse{blindsubmission}%
 }
 
+\newcommand{\IfBlindTF}[2]{\iftoggle{blindsubmission}{#1}{#2}}
+\newcommand{\SubmissionPdfAuthor}{\IfBlindTF{Anonymous}{\PaperPdfAuthors}}
+\newcommand{\SubmissionPdfCreator}{SustainLab Elsevier submission workflow}
 
-% Paragraphs with numbering
-%\usepackage{titlesec}
-%\setcounter{secnumdepth}{4}
-%\titleformat{\paragraph}
-%{\normalfont\normalsize\itshape}{\theparagraph.}{1em}{}
-%\titlespacing*{\paragraph}
-%{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-% Paragraphs with semicolon
-\usepackage{titlesec}
-
-\setcounter{secnumdepth}{4}
-\titleformat{\paragraph}[runin]
-{\normalfont\normalsize\itshape}{}{0em}{}[:]
-\titlespacing*{\paragraph}
-{0pt}{3.25ex plus 1ex minus .2ex}{1em}
-
-
-
-
-
-%\usepackage{xtab,booktabs}
-\usepackage{caption}
-% No space under figure
-\captionsetup{belowskip=0pt}
-\setlength{\belowcaptionskip}{-10pt}
-
-%\usepackage{subcaption}
-%\captionsetup[subfloat]{font=sf,size=footnotesize}
-
-\usepackage{float}
-\usepackage{sidecap} %captions on the side of figures
-
-
-
-
-\usepackage[acronym, nomain]{glossaries}
-\usepackage{glossary-mcols}
-\renewcommand{\glsmcols}{2}
-\setglossarystyle{mcolindex}
-%\renewcommand{\glsnamefont}[1]{\textmd{#1}\mytab} % Regular font for acronyms
-
-%\usepackage{tabto}
-%\newcommand\mytab{\tab \hspace{1.4cm}}
-%\renewcommand{\glsnamefont}[1]{\textmd{#1}  } % Regular font for acronyms
-
-%\usepackage[]{glossaries-extra}
-%\usepackage{glossaries-extra-stylemods}
-\makeglossaries
-
-%\setabbreviationstyle[acronym]{short-long}
-%\GlsXtrEnableEntryCounting
-% {glossaries}% list of categories to use entry counting
-% {1}% trigger value (only add to glossary if count > 3)
-
-
-\usepackage[
-separate-uncertainty  = true,
-uncertainty-separator =  {\,},
-mode = text,
-output-decimal-marker ={.},
-multi-part-units      = single,
-range-units           = single,
-%range-phrase          = {--},
-]{siunitx} 		%SI Einheit
 \sisetup{
-	%list-final-separator = { \translate{und} },
-	% range-phrase = {\text{~to~}},
-	%list-pair-separator = { \translate{und} },
-	%exponent-product = \cdot
-	detect-all, %apply document fonts for siunitx
-	%math-rm=\mathsf,
-	%text-rm=\sffamily,
-	locale                  = US,
-	input-decimal-markers   = {.},
-	output-decimal-marker   = {.},
-	%input-ignore            = {,},
-	%group-digits            = true,
-	%group-separator         = {,},
-	%group-separator         = {},
-	%tight-spacing           = true,
-	%input-signs             = ,
-	%input-symbols           = ,
-	%input-open-uncertainty  = ,
-	%input-close-uncertainty = ,
-	table-align-text-pre    = false,
-        mode=match
+  detect-all,
+  locale = US,
+  output-decimal-marker = {.}
 }
-
-
-%\usepackage[final]{pdfpages}
-\usepackage{afterpage}
-
-\usepackage{graphbox,graphicx}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-
-
-
-\usepackage{cleveref}
-\usepackage{nicefrac}
-
-
-% Remove preprint statement temporarily
-\let\today\relax
-\makeatletter
-\def\ps@pprintTitle{%
-    \let\@oddhead\@empty
-    \let\@evenhead\@empty
-    \def\@oddfoot{\footnotesize\itshape
-         {} \hfill\today}%
-    \let\@evenfoot\@oddfoot
-    }
-\makeatother
-
-
-% Modify vertical space between figure and caption
-\setlength{\abovecaptionskip}{5pt plus 3pt minus 2pt} % Chosen fairly arbitrarily
-% The default values are 10pt and 0pt. (The plus and minus allows the space to stretch and shrink if needed. The numbers specify how much.)

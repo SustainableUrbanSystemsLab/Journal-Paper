@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\input{metadata}
+\input{authors}
+
+\hypersetup{
+  pdftitle={Title page: \PaperTitle},
+  pdfauthor={\PaperPdfAuthors},
+  pdfcreator={SustainLab Elsevier submission workflow},
+  pdfproducer={SustainLab Elsevier submission workflow}
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+{\Large\bfseries \PaperTitle\par}
+\end{center}
+
+\vspace{1.5em}
+
+\RenderTitlePageAuthors
+
+\bigskip
+\noindent\textbf{Corresponding author}\\
+\PaperCorrespondingAuthor\\
+\texttt{\PaperCorrespondingEmail}
+
+\end{document}
